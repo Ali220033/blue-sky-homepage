@@ -1,6 +1,7 @@
 const modal = document.querySelector("[data-modal]");
 const modalTitle = document.querySelector("#modal-title");
 const modalCopy = document.querySelector("[data-modal-copy]");
+const modalExtra = document.querySelector("[data-modal-extra]");
 const cartDot = document.querySelector(".cart-dot");
 const wishlistButton = document.querySelector('[data-action="wishlist"]');
 const collectionGrid = document.querySelector(".collection-grid");
@@ -8,6 +9,8 @@ const newsletterForm = document.querySelector("#newsletter-form");
 const formStatus = document.querySelector(".form-status");
 
 let cartCount = 0;
+const cartItems = [];
+const collectionNames = ["Plate Collection", "Cutlery Collection", "Drinkware Collection", "Serveware Collection", "Complete Sets"];
 
 const modalMessages = {
   search: {
@@ -29,6 +32,10 @@ const modalMessages = {
   gallery: {
     title: "Event gallery",
     copy: "Browse real event inspiration, save visual references, and imagine each collection styled for your own tablescape."
+  },
+  wholesale: {
+    title: "Wholesale access",
+    copy: "Send your business email and company name to begin a wholesale account request. This front-end is ready to connect to your form provider or CRM."
   }
 };
 
@@ -36,6 +43,7 @@ function openModal(type, customTitle) {
   const message = modalMessages[type] || modalMessages.cart;
   modalTitle.textContent = customTitle || message.title;
   modalCopy.textContent = message.copy;
+  modalExtra.innerHTML = getModalExtra(type);
   modal.hidden = false;
 }
 
@@ -45,10 +53,43 @@ function closeModal() {
 
 function addToCart(productName) {
   cartCount += 1;
+  cartItems.push(productName);
   cartDot.textContent = String(cartCount);
   cartDot.classList.add("pulse");
   window.setTimeout(() => cartDot.classList.remove("pulse"), 450);
   openModal("cart", `${productName} added to your sample cart`);
+}
+
+function getModalExtra(type) {
+  if (type === "search") {
+    return `
+      <form class="modal-form" data-search-form>
+        <input name="query" type="search" placeholder="Search plates, cutlery, drinkware..." autocomplete="off" />
+        <button type="submit">Search</button>
+      </form>
+      <div class="modal-results" data-search-results>
+        ${collectionNames.map((name) => `<button type="button" data-product="${name}">${name}</button>`).join("")}
+      </div>
+    `;
+  }
+
+  if (type === "cart") {
+    const items = cartItems.length ? cartItems : ["No samples added yet"];
+    return `<ul class="cart-list">${items.map((item) => `<li>${item}</li>`).join("")}</ul>`;
+  }
+
+  if (type === "wholesale") {
+    return `
+      <form class="modal-form" data-wholesale-form>
+        <input name="company" type="text" placeholder="Company name" />
+        <input name="email" type="email" placeholder="Business email" />
+        <button type="submit">Request Access</button>
+      </form>
+      <strong class="modal-status" data-modal-status></strong>
+    `;
+  }
+
+  return "";
 }
 
 document.addEventListener("click", (event) => {
@@ -88,6 +129,23 @@ document.addEventListener("click", (event) => {
   }
 
   openModal(action);
+});
+
+modal.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  if (event.target.matches("[data-search-form]")) {
+    const query = new FormData(event.target).get("query").toString().toLowerCase();
+    const matches = collectionNames.filter((name) => name.toLowerCase().includes(query));
+    document.querySelector("[data-search-results]").innerHTML = (matches.length ? matches : collectionNames)
+      .map((name) => `<button type="button" data-product="${name}">${name}</button>`)
+      .join("");
+  }
+
+  if (event.target.matches("[data-wholesale-form]")) {
+    document.querySelector("[data-modal-status]").textContent = "Request received. We will follow up with wholesale details.";
+    event.target.reset();
+  }
 });
 
 modal.addEventListener("click", (event) => {

@@ -1062,6 +1062,79 @@ button {
   flex-wrap: wrap;
 }
 
+.modal-extra {
+  margin: 0 0 20px;
+}
+
+.modal-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.modal-form input {
+  min-width: 0;
+  height: 40px;
+  border: 1px solid #ded6ed;
+  border-radius: 7px;
+  padding: 0 13px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #161a24;
+  font-size: 12px;
+  outline: 0;
+}
+
+.modal-form button {
+  height: 40px;
+  border: 0;
+  border-radius: 7px;
+  padding: 0 16px;
+  color: #fff;
+  background: linear-gradient(100deg, #68bfff, #f18aff);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.modal-results {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.modal-results button,
+.cart-list li {
+  border: 1px solid #eadcf7;
+  border-radius: 999px;
+  padding: 8px 12px;
+  background: #fff;
+  color: #242936;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.45px;
+  text-transform: uppercase;
+}
+
+.cart-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.modal-status {
+  display: block;
+  margin-top: 10px;
+  color: #765aff;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
 .modal-close {
   position: absolute;
   right: 14px;
