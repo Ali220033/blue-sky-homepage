@@ -10,7 +10,7 @@
   --surface: #ffffff;
   --wash: #f8f6ff;
   --shadow: 0 18px 38px rgba(131, 91, 190, 0.13);
-  --container: min(944px, calc(100vw - 76px));
+  --container: min(1180px, calc(100vw - 80px));
 }
 
 * {
