@@ -203,7 +203,7 @@ button {
 }
 
 .hero {
-  min-height: 461px;
+  min-height: clamp(520px, 64vh, 690px);
   position: relative;
   overflow: hidden;
   background:
@@ -253,7 +253,7 @@ button {
   position: absolute;
   inset: 0 0 auto auto;
   width: 69%;
-  height: 461px;
+  height: 100%;
   background-image: url("assets/hero-table.png");
   background-size: cover;
   background-position: center right;
@@ -271,7 +271,7 @@ button {
 .hero-copy {
   width: var(--container);
   margin: 0 auto;
-  padding-top: 54px;
+  padding-top: clamp(54px, 8vh, 92px);
   position: relative;
   z-index: 1;
 }
@@ -507,8 +507,8 @@ button {
 
 .collections {
   position: relative;
-  padding-top: 20px;
-  padding-bottom: 0;
+  padding-top: 44px;
+  padding-bottom: 44px;
 }
 
 .centered {
@@ -680,8 +680,8 @@ button {
   grid-template-columns: 326px 1fr;
   gap: 22px;
   align-items: stretch;
-  padding-top: 17px;
-  padding-bottom: 16px;
+  padding-top: 34px;
+  padding-bottom: 44px;
 }
 
 .story-copy {
@@ -810,8 +810,8 @@ button {
 }
 
 .inspired {
-  padding-top: 0;
-  padding-bottom: 18px;
+  padding-top: 10px;
+  padding-bottom: 38px;
 }
 
 .gallery-head {
@@ -862,7 +862,7 @@ button {
   grid-auto-columns: 1fr;
   min-height: 68px;
   margin-top: 1px;
-  margin-bottom: 14px;
+  margin-bottom: 38px;
 }
 
 .secondary-benefits article {
@@ -885,7 +885,7 @@ button {
   grid-template-columns: 300px 1fr 300px;
   gap: 26px;
   margin: 0 auto;
-  padding: 7px 37px 10px;
+  padding: 26px 37px 34px;
   border-top: 1px solid rgba(232, 228, 242, 0.78);
 }
 

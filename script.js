@@ -37,12 +37,10 @@ function openModal(type, customTitle) {
   modalTitle.textContent = customTitle || message.title;
   modalCopy.textContent = message.copy;
   modal.hidden = false;
-  document.body.style.overflow = "hidden";
 }
 
 function closeModal() {
   modal.hidden = true;
-  document.body.style.overflow = "";
 }
 
 function addToCart(productName) {
